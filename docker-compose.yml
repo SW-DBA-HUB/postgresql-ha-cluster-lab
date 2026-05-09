@@ -6,6 +6,11 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: password
       POSTGRES_DB: labdb
+    command: >
+      postgres
+      -c wal_level=replica
+      -c max_wal_senders=10
+      -c listen_addresses='*'
     ports:
       - "5432:5432"
 
@@ -15,6 +20,7 @@ services:
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: labdb
+    depends_on:
+      - primary
     ports:
       - "5433:5432"
