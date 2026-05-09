@@ -1,10 +1,20 @@
 services:
-  postgres:
+  primary:
     image: postgres:16
-    container_name: postgres-lab
+    container_name: postgres-primary
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: password
       POSTGRES_DB: labdb
     ports:
       - "5432:5432"
+
+  replica:
+    image: postgres:16
+    container_name: postgres-replica
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: labdb
+    ports:
+      - "5433:5432"
